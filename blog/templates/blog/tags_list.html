@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block title %}
+    Tags - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <h1 class="mb-5">Tags:</h1>
+    {% for tag in tags %}
+        <h2>
+            <a style="text-decoration: none;" href="{{ tag.get_absolute_url }}">{{ tag }}</a>
+        </h2>
+    {% endfor %}
+    
+{% endblock %}
