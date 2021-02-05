@@ -16,7 +16,7 @@ class Post(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('post_detail_url', kwargs={'slug':self.slug})
+        return reverse('post_detail_url', kwargs={'slug': self.slug})
 
     def get_update_url(self):
         pass
@@ -33,7 +33,7 @@ class Tag(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('tag_detail_url', kwargs={'slug':self.slug})
+        return reverse('tag_detail_url', kwargs={'slug': self.slug})
 
     def get_update_url(self):
         pass

@@ -4,11 +4,17 @@
 {% endblock %}
 
 {% block content %}
+
+    <a href="{% url 'tag_create_url' %}">
+        <button type="button" class="btn btn-primary">
+            Create Tag
+        </button>
+    </a>
     <h1 class="mb-5">Tags:</h1>
     {% for tag in tags %}
         <h2>
             <a style="text-decoration: none;" href="{{ tag.get_absolute_url }}">{{ tag }}</a>
         </h2>
     {% endfor %}
-    
+
 {% endblock %}
