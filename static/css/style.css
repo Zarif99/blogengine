@@ -1,0 +1,22 @@
+.admin {
+    border: 1px solid #999;
+    border-radius: 5px;
+    position: fixed;
+    right: 50px;
+    bottom: 30px;
+    opacity: 0.3;
+    padding: 15px;
+    width: 100px;
+    line-height: 50px;
+    display: block;
+    text-align: center;
+}
+
+.admin:hover {
+    opacity: 1;
+}
+
+.admin-link {
+    desplay: box;
+    margin: 5px 0;
+}

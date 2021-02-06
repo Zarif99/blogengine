@@ -36,7 +36,7 @@ class Post(models.Model):
         return reverse('post_update_url', kwargs={'slug': self.slug})
 
     def get_delete_url(self):
-        pass
+        return reverse('post_delete_url', kwargs={'slug': self.slug})
 
 
 class Tag(models.Model):
@@ -56,6 +56,9 @@ class Tag(models.Model):
 
     def get_update_url(self):
         return reverse('tag_update_url', kwargs={'slug': self.slug})
+
+    def get_delete_url(self):
+        return reverse('tag_delete_url', kwargs={'slug': self.slug})
 
     class Meta:
         ordering = ['-title']

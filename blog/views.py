@@ -1,12 +1,15 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse
 
 from blog.models import Post, Tag
 from django.views.generic import View
 
-from blog.utils import ObjectDetailMixin, ObjectCreateMixin, ObjectUpdateMixin
+from blog.utils import ObjectCreateMixin
+from blog.utils import ObjectDetailMixin
+from blog.utils import ObjectUpdateMixin
+from blog.utils import ObjectDeleteMixin
 
 from blog.forms import TagForm, PostForm
-from django.shortcuts import get_object_or_404
 
 
 def post_list(request):
@@ -31,15 +34,22 @@ class PostDetail(ObjectDetailMixin, View):
 
 class PostUpdate(ObjectUpdateMixin, View):
     model = Post
+    model_form = PostForm
     template = 'blog/post_update.html'
 
 
-class TagDetail(ObjectDetailMixin, View):
-    """
-    This model view a Tag
-    """
-    model = Tag
-    template = 'blog/tag_detail.html'
+class PostDelete(ObjectDeleteMixin, View):
+    model = Post
+    template = 'blog/post_delete.html'
+    redirect_url = 'post_list_url'
+    # def get(self, request, slug):
+    #     post = Post.objects.get(slug__iexact=slug)
+    #     return render(request, 'blog/post_delete.html', context={'post': post})
+    #
+    # def post(self, request, slug):
+    #     post = Post.objects.get(slug__iexact=slug)
+    #     post.delete()
+    #     return redirect(reverse('post_list_url'))
 
 
 class TagCreate(ObjectCreateMixin, View):
@@ -50,21 +60,28 @@ class TagCreate(ObjectCreateMixin, View):
     template = 'blog/tag_create.html'
 
 
-class TagUpdate(View):
-    def get(self, request, slug):
-        tag = get_object_or_404(Tag, slug__iexact=slug)
-        bound_form = TagForm(instance=tag)
-        context = {'form': bound_form, 'tag': tag}
-        return render(request, 'blog/tag_update.html', context=context)
+class TagDetail(ObjectDetailMixin, View):
+    """
+    This model view a Tag
+    """
+    model = Tag
+    template = 'blog/tag_detail.html'
 
-    def post(self, request, slug):
-        tag = get_object_or_404(Tag, slug__iexact=slug)
-        bound_form = TagForm(request.POST, instance=tag)
-        if bound_form.is_valid():
-            new_tag = bound_form.save()
-            return redirect(new_tag)
-        context = {
-            'form': bound_form,
-            'tag': tag
-        }
-        return render(request, 'blog/tag_update.html', context=context)
+
+class TagUpdate(ObjectUpdateMixin, View):
+    model = Tag
+    model_form = TagForm
+    template = 'blog/tag_update.html'
+
+class TagDelete(ObjectDeleteMixin, View):
+    model = Tag
+    template = 'blog/tag_delete.html'
+    redirect_url = 'tags_list_url'
+    # def get(self, request, slug):
+    #     tag = Tag.objects.get(slug__iexact=slug)
+    #     return render(request, 'blog/tag_delete.html',context={'tag':tag})
+    #
+    # def post(self, request, slug):
+    #     tag = Tag.objects.get(slug__iexact=slug)
+    #     tag.delete()
+    #     return redirect(reverse('tags_list_url'))

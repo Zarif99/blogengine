@@ -11,8 +11,9 @@
             Update the {{ tag.title|title }} tag
         </button>
     </a>
-    {% for post in tag.posts.all %}
-        {% include 'blog/includes/post_card_templates.html' %}
-    {% endfor %}
-
+    <a href="{{ tag.get_delete_url }}">
+        <button type="button" class="btn btn-danger">
+            Delete
+        </button>
+    </a>
 {% endblock %}
