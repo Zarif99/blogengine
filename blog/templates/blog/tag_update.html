@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ tag.title|title}} - {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <form action="{{ tag.get_update_url }}" method="post">
+        {% csrf_token %}
+        {% for foo in form %}
+            {{ foo.label }}
+            {{ foo }}
+
+            {% if form.errors %}
+                {{ form.errors }}
+            {% endif %}
+        {% endfor %}
+
+        <button class="btn btn-primary" type="submit">Update Tag</button>
+    </form>
+{% endblock %}

@@ -5,6 +5,11 @@
 {% endblock %}
 
 {% block content %}
+    <a href="{% url 'post_create_url' %}">
+        <button type="button" class="btn btn-primary">
+            Create Post
+        </button>
+    </a>
     <h1>Posts</h1>
     {% for post in posts %}
         {% include 'blog/includes/post_card_templates.html' %}

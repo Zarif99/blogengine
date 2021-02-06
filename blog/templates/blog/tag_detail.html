@@ -4,7 +4,13 @@
 {% endblock %}
 
 {% block content %}
+
     <h1 class="mb-5"> Posts with "<i>{{ tag.title|title }}</i>" tags: </h1>
+    <a href="{{ tag.get_update_url }}">
+        <button type="button" class="btn btn-primary">
+            Update the {{ tag.title|title }} tag
+        </button>
+    </a>
     {% for post in tag.posts.all %}
         {% include 'blog/includes/post_card_templates.html' %}
     {% endfor %}
