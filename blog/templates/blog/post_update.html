@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/base_blog.html' %}
 
 {% block title %}
     Post Update - {{ block.super }}
@@ -7,11 +7,11 @@
 {% block content %}
     <h1 class="mb-5">Post Update:</h1>
     <form action="{{ post.get_update_url }}" method="post">
-    {% csrf_token %}
+        {% csrf_token %}
         {% if form.errors %}
             {{ form.errors }}
         {% endif %}
         {{ form }}
-    <button type="submit" class="btn btn-primary">Update Post</button>
+        <button type="submit" class="btn btn-primary">Update Post</button>
     </form>
 {% endblock %}

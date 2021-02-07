@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'blog/base_blog.html' %}
 {% block title %}
     Tags - {{ block.super }}
 {% endblock %}
@@ -11,7 +11,7 @@
         </button>
     </a>
     <h1 class="mb-5">Tags:</h1>
-    {% for tag in tags %}
+    {% for tag in tag_list %}
         <h2>
             <a style="text-decoration: none;" href="{{ tag.get_absolute_url }}">{{ tag }}</a>
         </h2>

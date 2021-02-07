@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block admin %}
+    <a class="btn btn-light" href="{{ admin_object.get_create_url }}">Create</a>
+    <a class="btn btn-light" href="{{ admin_object.get_update_url }}">Edit</a>
+    <a class="btn btn-danger" href="{{ admin_object.get_delete_url }}">Delete</a>
+{% endblock %}

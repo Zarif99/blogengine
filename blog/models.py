@@ -62,3 +62,5 @@ class Tag(models.Model):
 
     class Meta:
         ordering = ['-title']
+        verbose_name='Tag'
+        verbose_name_plural='Tags'
